@@ -5,7 +5,7 @@ const friendsController = require('../controllers/friends.controller');
 
 const friendsRouter = express.Router();
 
-/* middleware */
+/* middleware (for `friends`)*/
 friendsRouter.use((req, res, next) => {
   console.log('ip address:', req.ip);
   next();
