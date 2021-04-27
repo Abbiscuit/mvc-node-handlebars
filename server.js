@@ -15,13 +15,42 @@ const friends = [
   },
 ];
 
-app.get('/', (req, res) => {
+/* middleware */
+app.use((req, res, next) => {
+  const start = Date.now();
+  next();
+  const delta = Date.now() - start;
+  console.log(`${req.method} ${req.url} ${delta}ms`);
+});
+
+app.use(express.json());
+
+/* routes */
+app.post('/friends', (req, res) => {
+  if (!req.body.name) {
+    // stop execution
+    return res.status(400).json({
+      error: 'Missing friend name',
+    });
+  }
+
+  const newFriend = {
+    id: friends.length,
+    name: req.body.name,
+  };
+  friends.push(newFriend);
+
+  res.status(200).json(newFriend);
+});
+
+app.get('/friends', (req, res) => {
   res.json(friends);
 });
 
 app.get('/friends/:friendId', (req, res) => {
   const friendId = Number(req.params.friendId);
   const friend = friends[friendId];
+
   if (friend) {
     res.status(200).json(friend);
   } else {
