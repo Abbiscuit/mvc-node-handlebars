@@ -6,18 +6,6 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-/* data */
-const friends = [
-  {
-    id: 0,
-    name: 'Einstain',
-  },
-  {
-    id: 1,
-    name: 'Isaac Newtooon',
-  },
-];
-
 /* middleware */
 app.use((req, res, next) => {
   const start = Date.now();
