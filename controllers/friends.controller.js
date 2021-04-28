@@ -14,7 +14,7 @@ function postFriend(req, res) {
   };
   model.push(newFriend);
 
-  res.status(200).json(newFriend);
+  res.status(201).json(newFriend);
 }
 
 function getFriends(req, res) {
