@@ -1,11 +1,9 @@
-/* pathのハンドリング用モジュール */
-const path = require('path');
-
 /* debugging benefitのためfunction() {}の形式 */
 function getMessages(req, res) {
-  res.sendFile(
-    path.join(__dirname, '..', 'public', 'images', 'skimountain.jpg')
-  );
+  res.render('messages', {
+    title: 'Messages to my friends!',
+    friend: 'Elon Musk',
+  });
 }
 
 function postMessage(req, res) {
